@@ -1,1 +1,4 @@
-
+		 Feb-22-2020
+1. Make public data
+2. Make Auth and push to github
+3. Make real time notification
