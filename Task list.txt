@@ -2,3 +2,12 @@
 1. Make public data
 2. Make Auth and push to github
 3. Make real time notification
+
+	Order of table
+
+1. user type
+2. account
+3. child of account
+4. Company
+
+5. state->city->itemType->Item posts->car->house->alert->picture

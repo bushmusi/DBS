@@ -19,6 +19,15 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('ipAddress')->nullable();
+            $table->string('gender')->default('Male');
+            $table->string('fName')->default('Name');
+            $table->string('lName')->default('Name');
+            $table->string('mName')->default('Name');
+            $table->string('phone')->default('Name');
+            $table->bigInteger('userTypeId')->unsigned()->default(1);
+            $table->foreign('userTypeId')->references('id')->on('userTypes');
+            $table->string('paymentStatus')->default('Unpaid');
             $table->rememberToken();
             $table->timestamps();
         });
