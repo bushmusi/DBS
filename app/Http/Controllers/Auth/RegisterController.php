@@ -53,6 +53,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'userTypeId' => ['required','min:1','max:3'],
+            'gender' => ['required'],
+            'phone' => ['required'],
+            'mname' => ['required'],
         ]);
     }
 
@@ -64,10 +68,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $clientIP = \Request::ip();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'userTypeId' => $data['userTypeId'],
             'password' => Hash::make($data['password']),
+            'ipAddress' => $clientIP,
+            'gender' => $data['gender'],
+            'phone' => $data['phone'],
+            'fname' => $data['name'],
+            'mname' => $data['mname'],
         ]);
+        
     }
 }

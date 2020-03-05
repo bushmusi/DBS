@@ -11,3 +11,16 @@
 4. Company
 
 5. state->city->itemType->Item posts->car->house->alert->picture
+
+
+	March-02-2020
+
+1. Make forms to submit data of data customer and Company
+2. Laravel Quick starter https://datatables.yajrabox.com/starter
+3. Laravel Sample model link : https://datatables.yajrabox.com/eloquent/master
+
+
+				Task to do March-03-2020
+1. Encoder function  
+2. Authentication and navigation bar
+3.

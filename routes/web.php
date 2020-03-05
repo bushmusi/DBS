@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::controller('datatables', 'DatatablesController', [
+//     'anyData'  => 'datatables.data',
+//     'getIndex' => 'datatables',
+// ]);
+
+Route::get('/datatables','DatatablesController@getIndex')->name('datatables');
+Route::get('datatables/data','DatatablesController@anyData')->name('datatables.data');
+
+Route::get('encoder/approve','DatatablesController@approve')->name('encoder.approve');
+
+Route::get('encoder/remove','DatatablesController@remove')->name('encoder.remove');
