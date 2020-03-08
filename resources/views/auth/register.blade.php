@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -50,7 +50,6 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <i class="fa fa-flag" aria-hidden="true"></i>
                                         <span class="input-group-text">+251</span>
                                     </div>
                                     <input type="text" class="form-control" name="phone" id="phone" value="{{ old('name') }}"  placeholder="_ _ _ _ _ _ _ _">

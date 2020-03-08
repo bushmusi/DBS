@@ -24,9 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     'getIndex' => 'datatables',
 // ]);
 
-Route::get('/datatables','DatatablesController@getIndex')->name('datatables');
-Route::get('datatables/data','DatatablesController@anyData')->name('datatables.data');
+Route::get('/encoder','EncoderController@getIndex')->name('encoder');
+Route::get('encoder/data','EncoderController@anyData')->name('encoder.data');
 
-Route::get('encoder/approve','DatatablesController@approve')->name('encoder.approve');
+Route::get('encoder/approve','EncoderController@approve')->name('encoder.approve');
 
-Route::get('encoder/remove','DatatablesController@remove')->name('encoder.remove');
+Route::get('encoder/remove','EncoderController@remove')->name('encoder.remove');
