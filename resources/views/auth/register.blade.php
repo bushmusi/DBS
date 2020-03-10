@@ -118,9 +118,6 @@
                                         <option value="{{$item->id}}">{{ $item->name }}</option>
                                     @endforeach
                                     
-                                    {{-- <option value="1">Customer</option>
-                                    <option value="2">Broker</option>
-                                    <option value="3">Company</option> --}}
                                 </select>
 
                                 @error('userTypeId')
@@ -177,4 +174,6 @@
         alert('hello');
     })
 </script>
+
+
 @endsection

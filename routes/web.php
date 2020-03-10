@@ -6,6 +6,9 @@ use App\UserType;
 // "View" is the View Facade
 $types = UserType::all();
 View::share('UserTypeList', $types);
+//
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
