@@ -1,5 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\View;
+use App\UserType;
+
+// "View" is the View Facade
+$types = UserType::all();
+View::share('UserTypeList', $types);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +36,5 @@ Route::get('encoder/data','EncoderController@anyData')->name('encoder.data');
 Route::get('encoder/approve','EncoderController@approve')->name('encoder.approve');
 
 Route::get('encoder/remove','EncoderController@remove')->name('encoder.remove');
+
+

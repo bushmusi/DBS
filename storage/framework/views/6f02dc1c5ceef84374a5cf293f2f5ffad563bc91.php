@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><?php echo e(__('Register')); ?></div>
+            <div class="card-header"><?php echo e(__('Register')); ?> </div>
 
                 <div class="card-body">
                     <form method="POST" action="<?php echo e(route('register')); ?>">
@@ -175,9 +175,11 @@ endif;
 unset($__errorArgs, $__bag); ?>" name="userTypeId"
                                     id="userTypeId">
                                     <option selected value="">Select one</option>
-                                    <option value="1">Customer</option>
-                                    <option value="2">Broker</option>
-                                    <option value="3">Company</option>
+                                    <?php $__currentLoopData = $UserTypeList ?? ''; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    
+                                    
                                 </select>
 
                                 <?php $__errorArgs = ['userTypeId'];
@@ -250,5 +252,11 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        alert('hello');
+    })
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Bisrat\Desktop\Laravel\blog\resources\views/auth/register.blade.php ENDPATH**/ ?>

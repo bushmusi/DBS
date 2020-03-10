@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            <div class="card-header">{{ __('Register') }} </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -114,9 +114,13 @@
                                 <select class="custom-select @error('userTypeId') is-invalid @enderror" name="userTypeId"
                                     id="userTypeId">
                                     <option selected value="">Select one</option>
-                                    <option value="1">Customer</option>
+                                    @foreach ($UserTypeList ?? '' as $item)
+                                        <option value="{{$item->id}}">{{ $item->name }}</option>
+                                    @endforeach
+                                    
+                                    {{-- <option value="1">Customer</option>
                                     <option value="2">Broker</option>
-                                    <option value="3">Company</option>
+                                    <option value="3">Company</option> --}}
                                 </select>
 
                                 @error('userTypeId')
@@ -167,4 +171,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        alert('hello');
+    })
+</script>
 @endsection
