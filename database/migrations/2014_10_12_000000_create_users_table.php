@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('mName')->default('Name');
             $table->string('phone')->default('Name');
             $table->bigInteger('userTypeId')->unsigned()->default(1);
-            $table->foreign('userTypeId')->references('id')->on('userTypes');
+            $table->foreign('userTypeId')->references('id')->on('userTypes')->onDelete('cascade');;
             $table->string('paymentStatus')->default('Unpaid');
             $table->string('deleted_at')->default('');
             $table->rememberToken();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Company;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,21 +43,26 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator for an incoming registration data.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
+        
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'userTypeId' => ['required','min:1','max:3'],
-            'gender' => ['required'],
-            'phone' => ['required'],
-            'mname' => ['required'],
+            'userTypeId' => ['required', 'numeric'],
+            'mname' => ['required', 'string', 'max:255'],
+            'phone' => ['required ','digits:9'],
+            'gender' => ['required', 'in:Male,Female'],
+            'cImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'cName' => ['required', 'string', 'max:255'],
+            'cDesc' => ['required', 'string', 'max:255'],
+
         ]);
     }
 
@@ -68,18 +74,44 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $clientIP = \Request::ip();
-        return User::create([
+        $ip = $clientIP = '127.0.0.1';
+        $userData = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'userTypeId' => $data['userTypeId'],
-            'password' => Hash::make($data['password']),
-            'ipAddress' => $clientIP,
-            'gender' => $data['gender'],
-            'phone' => $data['phone'],
+            'deleted_at' => '',
             'fname' => $data['name'],
             'mname' => $data['mname'],
+            'phone' => $data['phone'],
+            'password' => Hash::make($data['password']),
+            'ipAddress' =>$ip,
+            'gender' => $data['gender'],
         ]);
+
+
+        //Image validation and storing code
+        if(request()->hasFile('cImage'))
+        {
+            $filenameToStore = time().'.'.request()->cImage->getClientOriginalExtension();
+            request()->cImage->move(public_path('images'), $filenameToStore);
+        }
+        else{
+            $filenameToStore = 'noImage.jpg';
+        }
         
+        // 
+        $companyData = new Company([
+            'name' => $data['cName'],
+            'description' => $data['cDesc'],
+            'address' => 'add',
+            'phone' => $data['phone'],
+            'logoImage' => $filenameToStore,
+            'city_id' => '1',
+        ]);
+
+        $userData->company()->save($companyData);
+
+
+        return $userData;
     }
 }

@@ -16,7 +16,7 @@ class CreateCarsTable extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('itemPostID')->unsigned();
-            $table->foreign('itemPostID')->references('id')->on('item_posts');
+            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');;
             $table->string('model');
             $table->string('transmition');
             $table->string('year');

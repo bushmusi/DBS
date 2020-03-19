@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel DataTables Tutorial</title>
+    <title>{{ config('app.name', 'DBS') }}</title>
 
     @include('layouts.navbar.nav')
     @include('layouts.library.master-library')
@@ -19,7 +19,7 @@
 
                 @else
                     <div class="list-group">
-                        @if(Auth::user()->userTypeId == 1)
+                        @if(Auth::user()->userTypeId == 3)
                             <button type="button" class="list-group-item list-group-item-action active">
                                 <strong class="text-center">Tasks Customer </strong>
                             </button>
@@ -46,7 +46,7 @@
                             <button type="button" class="list-group-item list-group-item-action">Upload Item</button>
                             <button type="button" class="list-group-item list-group-item-action" disabled>Wish List</button>
                         @endif
-                        @if(Auth::user()->userTypeId == 3)
+                        @if(Auth::user()->userTypeId == 1)
                             <button type="button" class="list-group-item list-group-item-action active">
                                 <strong class="text-center">Tasks Company</strong>
                             </button>
@@ -55,7 +55,7 @@
                             </button>
                             <button type="button" class="list-group-item list-group-item-action">Upload Item</button>
                         @endif
-                        @if(Auth::user()->userTypeId == 4)
+                        @if(Auth::user()->userTypeId == 5)
                             <button type="button" class="list-group-item list-group-item-action active">
                                 <strong class="text-center">Admin Tasks</strong>
                             </button>
@@ -66,7 +66,7 @@
                             <button type="button" class="list-group-item list-group-item-action">Manage Encoder</button>
                             <button type="button" class="list-group-item list-group-item-action">Manage Scam broker</button>
                         @endif
-                        @if(Auth::user()->userTypeId == 5)
+                        @if(Auth::user()->userTypeId == 4)
                             <button type="button" class="list-group-item list-group-item-action active">
                                 <strong class="text-center">Encoder Tasks</strong>
                             </button>

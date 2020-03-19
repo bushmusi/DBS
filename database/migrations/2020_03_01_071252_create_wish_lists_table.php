@@ -17,7 +17,7 @@ class CreateWishListsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('itemPostID')->unsigned();
             $table->bigInteger('userID');
-            $table->foreign('userID')->references('userID')->on('users');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade');;
             $table->timestamps();
         });
     }

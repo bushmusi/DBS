@@ -16,7 +16,7 @@ class CreateHousesTable extends Migration
         Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('itemPostID');
-            $table->foreign('itemPostID')->references('id')->on('item_posts');
+            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');;
             $table->string('size');
             $table->string('type');
             $table->string('bankLoad');

@@ -20,6 +20,19 @@ class UserTypeTableSeeder extends Seeder
               'name' => 'Encoder',
               'isActive' => '1',
             ),
+            array(
+              'name' => 'Broker',
+              'isActive' => '1',
+            ),
+            array(
+              'name' => 'Customer',
+              'isActive' => '1',
+            ),
+            array(
+              'name' => 'Company',
+              'isActive' => '1',
+            ),
+            
           ));
     }
 }

@@ -3,12 +3,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div class="card-header"><?php echo e(__('Register')); ?> </div>
+                <div class="card-header"><?php echo e(__('Register')); ?> </div>
 
                 <div class="card-body">
-                    <form method="POST" action="<?php echo e(route('register')); ?>">
+                    <form method="POST" action="<?php echo e(route('register')); ?>" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
-
+                        <?php $__currentLoopData = $CityList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php echo e($item->state); ?> <br>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <div class="form-group row">
                             <label for="name"
                                 class="col-md-4 col-form-label text-md-right"><?php echo e(__('First Name')); ?></label>
@@ -75,59 +77,45 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
                                         <span class="input-group-text">+251</span>
                                     </div>
-                                    <input type="text" class="form-control" name="phone" id="phone" value="<?php echo e(old('name')); ?>"  placeholder="_ _ _ _ _ _ _ _">
-                                </div>
+                                    <input id="phone" type="text"
+                                        class="form-control <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="phone"
+                                        value="<?php echo e(old('phone')); ?>">
 
-                                <?php $__errorArgs = ['phone'];
+                                    <?php $__errorArgs = ['phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                                <?php unset($message);
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Gender')); ?></label>
-
-                            <div class="col-md-6">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" id="gender"
-                                            value="Male">
-                                        Male
-                                    </label>
-                                    <label class="form-check-label ml-md-5">
-                                        <input type="radio" class="form-check-input" name="gender" id="gender"
-                                            value="Female">
-                                        Female
-                                    </label>
                                 </div>
-                                <?php $__errorArgs = ['gender'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
                             </div>
+
+
                         </div>
+
 
 
                         <div class="form-group row">
@@ -161,6 +149,56 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Gender')); ?></label>
+
+                            <div class="col-md-6">
+                                <!-- Default inline 1-->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio"
+                                        class="custom-control-input <?php $__errorArgs = ['gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="gender1"
+                                        name="gender" value="Male">
+                                    <label class="custom-control-label" for="gender1">Male</label>
+                                </div>
+
+                                <!-- Default inline 2-->
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio"
+                                        class="custom-control-input <?php $__errorArgs = ['gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="gender2"
+                                        name="gender" value="Female">
+                                    <label class="custom-control-label" for="gender2">Female</label>
+                                </div>
+                                <label class="is-invalid"></label>
+
+                                <?php $__errorArgs = ['gender'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong><?php echo e($message); ?></strong>
+                                </span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="userTypeId"
                                 class="col-md-4 col-form-label text-md-right"><?php echo e(__('Type')); ?></label>
 
@@ -172,14 +210,13 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="userTypeId"
-                                    id="userTypeId">
+unset($__errorArgs, $__bag); ?>"
+                                    name="userTypeId" id="userTypeId">
                                     <option selected value="">Select one</option>
                                     <?php $__currentLoopData = $UserTypeList ?? ''; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                    <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    
-                                    
+
                                 </select>
 
                                 <?php $__errorArgs = ['userTypeId'];
@@ -195,6 +232,125 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
+                        </div>
+
+                        <div id="companyForm">
+                            <div class="form-group row">
+                                <label for="cName"
+                                    class="col-md-4 col-form-label text-md-right"><?php echo e(__('Company Name')); ?></label>
+
+                                <div class="col-md-6">
+                                    <input id="cName" type="text"
+                                        class="form-control <?php $__errorArgs = ['cName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="cName">
+
+                                    <?php $__errorArgs = ['cName'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cImage"
+                                    class="col-md-4 col-form-label text-md-right"><?php echo e(__('Company Logo')); ?></label>
+
+                                <div class="col-md-6">
+                                    <div class="custom-file">
+                                        <input type="file"
+                                            class="custom-file-input  <?php $__errorArgs = ['cImage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="cImage"
+                                            aria-describedby="inputGroupFileAddon01" name="cImage">
+                                        <label class="custom-file-label" for="cImage">Choose file</label>
+                                    </div>
+
+                                    <label class="is-invalid"></label>
+                                    <?php $__errorArgs = ['cImage'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="cDesc"
+                                    class="col-md-4 col-form-label text-md-right"><?php echo e(__('Company Description')); ?></label>
+
+                                <div class="col-md-6">
+                                    <textarea class="form-control" id="cDesc" name="cDesc" rows="7"></textarea>
+
+                                    <?php $__errorArgs = ['cDesc'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="cDesc"
+                                    class="col-md-4 col-form-label text-md-right"><?php echo e(__('City Address')); ?></label>
+
+                                <div class="col-md-6">
+
+
+                                    
+
+
+                                    <?php $__errorArgs = ['cDesc'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+
+                            </div>
+
+
                         </div>
 
                         <div class="form-group row">
@@ -254,9 +410,18 @@ unset($__errorArgs, $__bag); ?>
 </div>
 
 <script>
-    $(document).ready(function(){
-        alert('hello');
+    $('#companyForm').hide();
+    $(document).on('change','#userTypeId',function(){
+        var type = $("#userTypeId :selected").text(); 
+        if(type == 'Company')
+        {
+            $('#companyForm').show();
+        }
+        else{
+            $('#companyForm').hide();
+        }
     })
 </script>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Bisrat\Desktop\Laravel\blog\resources\views/auth/register.blade.php ENDPATH**/ ?>

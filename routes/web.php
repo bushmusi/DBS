@@ -2,11 +2,18 @@
 
 use Illuminate\Support\Facades\View;
 use App\UserType;
+use App\City;
 
 // "View" is the View Facade
-$types = UserType::all();
+$types = UserType::where([ 
+    ['name','!=','Encoder'],
+    ['name','!=','Admin']
+])->get();
 View::share('UserTypeList', $types);
 //
+
+$cities = City::with('state')->get();
+View::share('CityList',$cities);
 
 
 /*
@@ -21,6 +28,7 @@ View::share('UserTypeList', $types);
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
