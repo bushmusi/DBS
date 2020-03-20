@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Company;
+use App\UserType;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,17 +31,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration data.
@@ -50,20 +51,38 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'userTypeId' => ['required', 'numeric'],
-            'mname' => ['required', 'string', 'max:255'],
-            'phone' => ['required ','digits:9'],
-            'gender' => ['required', 'in:Male,Female'],
-            'cImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'cName' => ['required', 'string', 'max:255'],
-            'cDesc' => ['required', 'string', 'max:255'],
 
-        ]);
+        $type = UserType::find($data['userTypeId']);
+        if($type->name == 'Company')
+        {
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'userTypeId' => ['required', 'numeric'],
+                'mname' => ['required', 'string', 'max:255'],
+                'phone' => ['required ','digits:9'],
+                'gender' => ['required', 'in:Male,Female'],
+                'cImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'cName' => ['required', 'string', 'max:255'],
+                'cDesc' => ['required', 'string', 'max:255'],
+                'cCity' => ['required', 'string', 'max:255','exists:cities,id'],
+    
+            ]);
+        }
+
+        else{
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'userTypeId' => ['required', 'numeric'],
+                'mname' => ['required', 'string', 'max:255'],
+                'phone' => ['required ','digits:9'],
+                'gender' => ['required', 'in:Male,Female'],
+    
+            ]);
+        }
     }
 
     /**
@@ -87,29 +106,35 @@ class RegisterController extends Controller
             'ipAddress' =>$ip,
             'gender' => $data['gender'],
         ]);
-
-
-        //Image validation and storing code
-        if(request()->hasFile('cImage'))
-        {
-            $filenameToStore = time().'.'.request()->cImage->getClientOriginalExtension();
-            request()->cImage->move(public_path('images'), $filenameToStore);
-        }
-        else{
-            $filenameToStore = 'noImage.jpg';
-        }
         
-        // 
-        $companyData = new Company([
-            'name' => $data['cName'],
-            'description' => $data['cDesc'],
-            'address' => 'add',
-            'phone' => $data['phone'],
-            'logoImage' => $filenameToStore,
-            'city_id' => '1',
-        ]);
 
-        $userData->company()->save($companyData);
+        $type = UserType::find($data['userTypeId']);
+        if($type->name == 'Company')
+        {
+            //Image validation and storing code
+            if(request()->hasFile('cImage'))
+            {
+                $filenameToStore = time().'.'.request()->cImage->getClientOriginalExtension();
+                request()->cImage->move(public_path('images'), $filenameToStore);
+            }
+            else{
+                $filenameToStore = 'noImage.jpg';
+            }
+            
+            // 
+            $companyData = new Company([
+                'name' => $data['cName'],
+                'description' => $data['cDesc'],
+                'address' => 'add',
+                'phone' => $data['phone'],
+                'logoImage' => $filenameToStore,
+                'city_id' => $data['cCity'],
+            ]);
+
+            $userData->company()->save($companyData);
+        }
+
+
 
 
         return $userData;

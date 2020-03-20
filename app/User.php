@@ -14,6 +14,10 @@ class User extends Authenticatable
     function company() {
         return $this->hasOne('App\Company');
     }
+    function usertype() {
+        return $this->hasOne('App\Usertype');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

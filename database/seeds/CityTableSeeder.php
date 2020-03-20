@@ -22,7 +22,7 @@ class CityTableSeeder extends Seeder
                     'name' => 'Kality',
                 ),
                 array(
-                    'cityI' => '9',
+                    'state_id' => '9',
                     'name' => 'Yeka',
                 ),
                 array(

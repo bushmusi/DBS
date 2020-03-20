@@ -10,9 +10,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
-                        @foreach ($CityList as $item)
-                            {{   $item->state   }} <br>
-                        @endforeach
                         <div class="form-group row">
                             <label for="name"
                                 class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
@@ -145,7 +142,7 @@
 
                                 <div class="col-md-6">
                                     <input id="cName" type="text"
-                                        class="form-control @error('cName') is-invalid @enderror" name="cName">
+                                        class="form-control @error('cName') is-invalid @enderror" name="cName" value="{{ old('cName') }}">
 
                                     @error('cName')
                                     <span class="invalid-feedback" role="alert">
@@ -180,7 +177,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Company Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea class="form-control" id="cDesc" name="cDesc" rows="7"></textarea>
+                                    <textarea class="form-control  @error('cDesc') is-invalid @enderror" id="cDesc" name="cDesc" rows="7">{{ old('cDesc') }}</textarea>
 
                                     @error('cDesc')
                                     <span class="invalid-feedback" role="alert">
@@ -194,23 +191,23 @@
 
 
                             <div class="form-group row">
-                                <label for="cDesc"
+                                <label for="cCity"
                                     class="col-md-4 col-form-label text-md-right">{{ __('City Address') }}</label>
 
                                 <div class="col-md-6">
 
 
-                                    {{-- <select class="selectpicker show-tick w-100" data-live-search="true">
-                                        <option data-tokens="select">Choose city</option>
+                                    <select class="selectpicker show-tick  @error('cCity') is-invalid @enderror" data-live-search="true" name="cCity" id="cCity">
+                                        <option data-tokens="select" value="">Choose city</option>
 
                                         @foreach ($CityList as $item)
-                                            <option data-tokens="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
+                                            <option data-tokens="{{ $item->id }}" value="{{  $item->id }}" data-subtext="{{ $item->state->name }}">{{  $item->name   }} </option>
+                                        @endforeach
 
-                                    </select> --}}
+                                    </select>
 
 
-                                    @error('cDesc')
+                                    @error('cCity')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
