@@ -7,7 +7,7 @@ use App\User;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 
-class EncoderController extends Controller
+class IndexController extends Controller
 {
     /**
      * Displays datatables front end view
