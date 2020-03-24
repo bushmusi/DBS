@@ -1,19 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\View;
-use App\UserType;
-use App\City;
-
-// "View" is the View Facade
-$types = UserType::where([ 
-    ['name','!=','Encoder'],
-    ['name','!=','Admin']
-])->get();
-View::share('UserTypeList', $types);
-//
-
-$cities = City::with('state')->get();
-View::share('CityList',$cities);
 
 
 /*
@@ -38,5 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+
+Route::get('/admin','HomeController@admin')->name('admin');
 
 

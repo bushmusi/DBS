@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
+namespace App\Http\Controllers\Encoder;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Yajra\Datatables\Datatables;
@@ -14,6 +16,13 @@ class IndexController extends Controller
      *
      * @return \Illuminate\View\View
      */
+   
+    public function __construct()
+    {
+        // $this->middleware(['encoder']);php 
+    }
+
+
     public function getIndex()
     {
         return view('encoder.index');

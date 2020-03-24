@@ -15,11 +15,11 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('itemPostID');
-            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');;
+            $table->bigInteger('item_post_id');
+            $table->foreign('item_post_id')->references('id')->on('item_posts')->onDelete('cascade');;
             $table->string('size');
             $table->string('type');
-            $table->string('bankLoad');
+            $table->string('bankLoan');
             $table->string('unit');
             $table->string('bed');
             $table->string('bathroom');

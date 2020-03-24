@@ -50,5 +50,6 @@ class CityTableSeeder extends Seeder
                     'name' => 'Cherkos ',
                 ),
         ));
+
     }
 }

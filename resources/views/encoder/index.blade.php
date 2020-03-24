@@ -5,11 +5,11 @@
         <a href="{{ route('register')}}" type="button" class="btn btn-primary">Add</a>
     </div>
     <br>
-    <table class="table  table-bordered  table-hover table-responsive w-100" id="users-table" cellspacing="0">
+    <table class="table  table-bordered  table-hover table-responsive " id="users-table" cellspacing="0">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th >Name</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Updated At</th>

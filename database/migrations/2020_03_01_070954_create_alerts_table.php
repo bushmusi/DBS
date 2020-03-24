@@ -16,7 +16,9 @@ class CreateAlertsTable extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('itemPostID')->unsigned();
-            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');;
+            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');
+            $table->bigInteger('userID');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade');
             $table->string('smsAlert');
             $table->string('emailAlert');
             $table->timestamps();

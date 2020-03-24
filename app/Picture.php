@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Picture extends Model
 {
     //
+    protected $fillable = ['image'];
+    
+    public function itemPost(){
+        return $this->belongsTo('App\ItemPost');
+    }
 }

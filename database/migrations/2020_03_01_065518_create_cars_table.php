@@ -15,17 +15,17 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('itemPostID')->unsigned();
-            $table->foreign('itemPostID')->references('id')->on('item_posts')->onDelete('cascade');;
+            $table->bigInteger('item_post_id')->unsigned();
+            $table->foreign('item_post_id')->references('id')->on('item_posts')->onDelete('cascade');;
             $table->string('model');
             $table->string('transmition');
             $table->string('year');
             $table->string('engineType');
             $table->string('condition');
             $table->string('bodyType');
-            $table->string('iccType');
+            $table->string('iccType')->nullable();
             $table->string('color');
-            $table->string('colorCondition');
+            $table->string('colorCondition')->nullable();
             $table->timestamps();
         });
     }

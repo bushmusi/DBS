@@ -139,4 +139,5 @@ class RegisterController extends Controller
 
         return $userData;
     }
+    
 }

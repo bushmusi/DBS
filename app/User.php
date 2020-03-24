@@ -11,13 +11,25 @@ class User extends Authenticatable
 
     use Notifiable;
 
+    const METHOD_USER_1 = '1';
+    const METHOD_USER_2 = '2';
+    const METHOD_USER_3 = '3';
+    const METHOD_USER_4 = '4';
+    const METHOD_USER_5 = '5';
+    const METHOD_USER_6 = '6';
+    const METHOD_USER_7 = '7';
+
+   
+
     function company() {
         return $this->hasOne('App\Company');
     }
     function usertype() {
-        return $this->hasOne('App\Usertype');
+        return $this->belongsTo('App\Usertype');
     }
-
+    function itemPosts() {
+        return $this->hasMany('App\ItemPost');
+    }
     /**
      * The attributes that are mass assignable.
      *

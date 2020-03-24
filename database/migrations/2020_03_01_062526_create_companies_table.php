@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->bigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->string('logoImage')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->bigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');;
             $table->string('address')->nullable();
